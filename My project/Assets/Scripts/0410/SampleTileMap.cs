@@ -19,7 +19,7 @@ public class SampleTileMap : MonoBehaviour
 
             for (int j = 0; j < 10; j++)
             {
-                GameObject temp = (GameObject)Instantiate(tile_001);
+                GameObject temp = (GameObject)Instantiate(tile_002);
                 temp.transform.position = new Vector3(i, 0, j);
             }
         }

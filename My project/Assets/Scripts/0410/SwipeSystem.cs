@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SwipeSystem : MonoBehaviour
 {
     private Vector2 initialpos;
