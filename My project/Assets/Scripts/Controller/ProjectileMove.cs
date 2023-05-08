@@ -7,25 +7,39 @@ public class ProjectileMove : MonoBehaviour
     public Vector3 launchDirection;
 
     private void OnCollisionEnter(Collision collision)
-    {   //º®¿¡ Ãæµ¹½Ã ÆÄ±«
+    {   //ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½Ä±ï¿½
         if(collision.gameObject.name == "Wall")
         {
             Destroy(this.gameObject);
         } 
-        //¸ó½ºÅÍ¿¡ Ãæµ¹½Ã
+        //ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½æµ¹ï¿½ï¿½
         if (collision.gameObject.name == "Monster")
         {
-            //¸ó½ºÅÍ¿¡¤Ä µ¥¹ÌÁö¸¦ ÁÖ°í »ç¶óÁø´Ù.
+            //ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
             collision.gameObject.GetComponent<MonsterController>().Damanged(1);
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Wall")
+        {
+            Destroy(this.gameObject);
+        }
+
+        if (other.gameObject.tag == "Monster")
+        {
+            other.gameObject.GetComponent<MonsterController>().Damanged(1);
             Destroy(this.gameObject);
         }
     }
 
     private void FixedUpdate()
     {
-        //½Ã°£´ëºñ ÀÌµ¿ ·® float °ªÀ¸·Î ¼±¾ð
+        //ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ float ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         float moveAmount = 3 * Time.fixedDeltaTime;
-        //launchDirection ¹æÇâÀ¸·Î ¹ß»çÃ¼ ÀÌµµ¤· (translate) ÀÌµµ¤· ½ÃÅ°´Â ÇÔ¤µ¤Ì
+        //launchDirection ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½Ã¼ ï¿½Ìµï¿½ï¿½ï¿½ (translate) ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ô¤ï¿½ï¿½ï¿½
         transform.Translate(launchDirection * moveAmount);
     }
 }
